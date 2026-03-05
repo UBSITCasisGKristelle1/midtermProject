@@ -1,0 +1,83 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Products Table</h2>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>
+          <span class="badge" [ngClass]="{'bg-success': product.status === 'Available', 'bg-warning': product.status === 'Low Stock', 'bg-danger': product.status === 'Out of Stock'}">
+            {{ product.status }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="viewProductDetails(product)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'" tabindex="-1" *ngIf="showModal" (click)="closeModal()">
+  <div class="modal-dialog modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Product Details & Edit</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="selectedProduct" class="mb-4">
+          <h6 class="text-muted mb-3">Current Product Information</h6>
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <strong>ID:</strong> {{ selectedProduct.id }}
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Name:</strong> {{ selectedProduct.name }}
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Category:</strong> {{ selectedProduct.category }}
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Price:</strong> ₹{{ selectedProduct.price }}
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Stock:</strong> {{ selectedProduct.stock }} units
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>Status:</strong>
+              <span class="badge" [ngClass]="{'bg-success': selectedProduct.status === 'Available', 'bg-warning': selectedProduct.status === 'Low Stock', 'bg-danger': selectedProduct.status === 'Out of Stock'}">
+                {{ selectedProduct.status }}
+              </span>
+            </div>
+            <div class="col-12 mb-3">
+              <strong>Description:</strong>
+              <p class="text-muted">{{ selectedProduct.description }}</p>
+            </div>
+          </div>
+          <hr>
+          <h6 class="text-muted mb-3">Edit Product</h6>
+        </div>
+        <app-product-form [product]="selectedProduct" (productChange)="onProductUpdate($event)"></app-product-form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop show" *ngIf="showModal" (click)="closeModal()"></div>
+

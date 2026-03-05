@@ -1,0 +1,28 @@
+<div *ngIf="product">
+  <form>
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="product.name" (ngModelChange)="onProductChange()" name="name">
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <input type="text" class="form-control" id="category" [(ngModel)]="product.category" (ngModelChange)="onProductChange()" name="category">
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" class="form-control" id="price" [(ngModel)]="product.price" (ngModelChange)="onProductChange()" name="price">
+    </div>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stock</label>
+      <input type="number" class="form-control" id="stock" [(ngModel)]="product.stock" (ngModelChange)="onProductChange()" name="stock">
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <input type="text" class="form-control" id="status" [(ngModel)]="product.status" (ngModelChange)="onProductChange()" name="status">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" rows="3" [(ngModel)]="product.description" (ngModelChange)="onProductChange()" name="description"></textarea>
+    </div>
+  </form>
+</div>
