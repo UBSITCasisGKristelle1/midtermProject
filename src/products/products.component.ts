@@ -118,6 +118,9 @@ this.showModal = false;
 }
 
 onProductUpdate(updatedProduct: Product) {
-  // Optional: handle additional logic if needed
+const index = this.products.findIndex(p => p.id === updatedProduct.id);
+if (index !== -1) {
+this.products[index] = { ...updatedProduct };   
+}
 }
 }
