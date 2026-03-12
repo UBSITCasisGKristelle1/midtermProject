@@ -1,9 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Product App</a>
+    <a class="navbar-brand" routerLink="/">Product App</a>
+    <div class="ms-3">
+      <a class="nav-link text-white d-inline" routerLink="/products">Products</a>
+      <a class="nav-link text-white d-inline" routerLink="/users">Users</a>
+    </div>
   </div>
 </nav>
 
-<main>
-  <app-products></app-products>
+<main class="p-3">
+  <router-outlet></router-outlet>
 </main>
