@@ -4,6 +4,6 @@ export interface User {
   lastName: string;
   email: string;
   role: string;
-  status?: string;    // optional
-  // additional properties can be added later
+  status?: string;    
+  
 }

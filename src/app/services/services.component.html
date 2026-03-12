@@ -7,7 +7,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ service.name }}</h5>
           <p class="card-text">{{ service.description }}</p>
-          <a class="btn btn-primary btn-sm" [routerLink]="['/services', service.id]">Learn More</a>
+          <a [routerLink]="['/services', service.id]">Learn More</a>
         </div>
       </div>
     </div>

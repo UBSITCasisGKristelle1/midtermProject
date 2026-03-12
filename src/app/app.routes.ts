@@ -5,6 +5,7 @@ import { ServicesComponent } from './services/services.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'products', pathMatch: 'full' },
@@ -14,4 +15,5 @@ export const routes: Routes = [
     { path: 'users/:id', component: UserDetailsComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'services/:id', component: ServiceDetailsComponent },
+    { path: 'analytics', component: AnalyticsComponent },
 ];

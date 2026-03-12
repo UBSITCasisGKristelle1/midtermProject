@@ -1,0 +1,152 @@
+<div class="analytics-wrapper">
+
+  <!-- Header -->
+  <div class="analytics-header">
+    <div>
+      <h2 class="analytics-title">Analytics Dashboard</h2>
+      <p class="analytics-subtitle">Overview of products, users & services</p>
+    </div>
+    <a routerLink="/services" class="btn-back">← Back to Services</a>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="stats-grid">
+    <div class="stat-card" *ngFor="let card of statCards">
+      <div class="stat-icon">{{ card.icon }}</div>
+      <div class="stat-info">
+        <span class="stat-label">{{ card.label }}</span>
+        <span class="stat-value">{{ card.value | number }}</span>
+        <span class="stat-unit">{{ card.unit }}</span>
+      </div>
+      <div class="stat-change" [class.positive]="card.change > 0" [class.neutral]="card.change === 0">
+        <span *ngIf="card.change > 0">▲ +{{ card.change }}%</span>
+        <span *ngIf="card.change === 0">— No change</span>
+        <span *ngIf="card.change < 0">▼ {{ card.change }}%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-row">
+
+    <!-- Monthly Users Bar Chart -->
+    <div class="chart-card">
+      <h5 class="chart-title">Monthly User Growth</h5>
+      <div class="bar-chart">
+        <div class="bar-group" *ngFor="let data of monthlyData">
+          <div class="bar-wrap">
+            <span class="bar-tooltip">{{ data.users | number }}</span>
+            <div class="bar users-bar" [style.height.%]="getBarHeight(data.users, maxMonthlyUsers)"></div>
+          </div>
+          <span class="bar-label">{{ data.month }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly Products Bar Chart -->
+    <div class="chart-card">
+      <h5 class="chart-title">Monthly Product Count</h5>
+      <div class="bar-chart">
+        <div class="bar-group" *ngFor="let data of monthlyData">
+          <div class="bar-wrap">
+            <span class="bar-tooltip">{{ data.products }}</span>
+            <div class="bar products-bar" [style.height.%]="getBarHeight(data.products, 128)"></div>
+          </div>
+          <span class="bar-label">{{ data.month }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tables Row -->
+  <div class="tables-row">
+
+    <!-- Top Products Table -->
+    <div class="table-card">
+      <h5 class="chart-title">Top Products by Sales</h5>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Sales</th>
+            <th>Revenue</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of topProducts; let i = index">
+            <td class="rank">{{ i + 1 }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.sales }}</td>
+            <td>${{ product.revenue | number }}</td>
+            <td>
+              <span class="trend-badge" [class.trend-up]="product.trend === 'up'" [class.trend-down]="product.trend === 'down'">
+                {{ product.trend === 'up' ? '▲ Up' : '▼ Down' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Recent Users Table -->
+    <div class="table-card">
+      <h5 class="chart-title">Recent Users</h5>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Role</th>
+            <th>Joined</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of recentUsers">
+            <td>
+              <div class="user-cell">
+                <div class="user-avatar">{{ getUserInitials(user.name) }}</div>
+                {{ user.name }}
+              </div>
+            </td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.joined }}</td>
+            <td>
+              <span class="status-badge" [class.status-active]="user.status === 'active'" [class.status-inactive]="user.status === 'inactive'">
+                {{ user.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Services Summary -->
+  <div class="services-summary">
+    <h5 class="chart-title">Services Overview</h5>
+    <div class="service-items">
+      <div class="service-item" *ngFor="let data of monthlyData | slice: -1">
+        <div class="service-row">
+          <span class="service-name">📦 Product Management</span>
+          <span class="service-stat">{{ data.products }} products tracked</span>
+          <a routerLink="/products" class="service-link">View →</a>
+        </div>
+        <div class="service-row">
+          <span class="service-name">👥 User Management</span>
+          <span class="service-stat">{{ data.users | number }} users registered</span>
+          <a routerLink="/users" class="service-link">View →</a>
+        </div>
+        <div class="service-row">
+          <span class="service-name">⚙️ Analytics</span>
+          <span class="service-stat">{{ data.services }} active services</span>
+          <span class="service-link muted">Current page</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

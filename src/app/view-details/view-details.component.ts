@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Product } from '../models/product.interface';
 
 interface Review {
@@ -14,7 +14,7 @@ interface Review {
 
 @Component({
   selector: 'app-view-details',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './view-details.component.html',
   styleUrl: './view-details.component.css'
 })
@@ -29,7 +29,6 @@ export class ViewDetailsComponent implements OnInit {
   newReview = { rating: 5, comment: '' };
   showReviewForm = false;
 
-  // Sample products data
   private sampleProducts: Product[] = [
     {
       id: 1,
@@ -54,7 +53,6 @@ export class ViewDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    // Get product ID from route params
     this.route.paramMap.subscribe(params => {
       const id = parseInt(params.get('id') || '1');
       this.product = this.sampleProducts.find(p => p.id === id) || this.sampleProducts[0];

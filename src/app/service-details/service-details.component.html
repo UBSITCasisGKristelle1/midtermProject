@@ -5,9 +5,11 @@
     </div>
     <div class="card-body">
       <p>{{ service.description }}</p>
-      <a routerLink="/services" class="btn btn-outline-secondary">Back to Services</a>
-      <a routerLink="/products" class="btn btn-outline-primary ms-2">View Products</a>
-      <a routerLink="/users" class="btn btn-outline-success ms-2">View Users</a>
+      <a [routerLink]="['/services']" class="btn btn-outline-secondary">Back to Services</a>
+
+      <a *ngIf="service.id === 1" [routerLink]="['/products']" class="btn btn-outline-primary ms-2">View Products</a>
+      <a *ngIf="service.id === 2" [routerLink]="['/users']" class="btn btn-outline-success ms-2">View Users</a>
+      <a *ngIf="service.id === 3" [routerLink]="['/analytics']" class="btn btn-outline-info ms-2">View Analytics</a>
     </div>
   </div>
 </div>

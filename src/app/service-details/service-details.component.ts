@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 interface Service {
@@ -11,7 +10,7 @@ interface Service {
 
 @Component({
   selector: 'app-service-details',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './service-details.component.html',
   styleUrl: './service-details.component.css'
 })
