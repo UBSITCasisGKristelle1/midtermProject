@@ -1,0 +1,133 @@
+.product-image-placeholder {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #ccc;
+  flex-direction: column;
+  text-align: center;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+}
+
+.product-image-placeholder i {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+}
+
+h1 {
+  font-weight: 700;
+  color: #333;
+}
+
+.price {
+  font-size: 2.5rem;
+  color: #28a745;
+  font-weight: 600;
+}
+
+.rating-section {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.rating-text {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.badge {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input-group {
+  max-width: 150px;
+}
+
+.btn-lg {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+}
+
+.reviews-section {
+  border-top: 2px solid #e9ecef;
+  padding-top: 2rem;
+}
+
+.card {
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.card-text {
+  color: #666;
+  line-height: 1.6;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.form-control, .input-group {
+  border-color: #ced4da;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+textarea.form-control {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.alert {
+  border-radius: 8px;
+}

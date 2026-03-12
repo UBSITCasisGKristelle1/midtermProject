@@ -1,1 +1,15 @@
-<p>services works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Our Services</h2>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let service of services">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ service.name }}</h5>
+          <p class="card-text">{{ service.description }}</p>
+          <a class="btn btn-primary btn-sm" [routerLink]="['/services', service.id]">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

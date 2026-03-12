@@ -1,1 +1,45 @@
 /* Custom styles for user component */
+
+.table {
+  margin-top: 1rem;
+}
+
+.table thead th {
+  font-weight: 600;
+  text-align: center;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.badge {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.btn-sm {
+  margin-right: 0.3rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.modal-backdrop {
+  z-index: 1040;
+}
+
+.modal {
+  z-index: 1050;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}

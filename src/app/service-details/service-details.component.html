@@ -1,0 +1,17 @@
+<div class="container mt-4" *ngIf="service">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3>{{ service.name }}</h3>
+    </div>
+    <div class="card-body">
+      <p>{{ service.description }}</p>
+      <a routerLink="/services" class="btn btn-outline-secondary">Back to Services</a>
+      <a routerLink="/products" class="btn btn-outline-primary ms-2">View Products</a>
+      <a routerLink="/users" class="btn btn-outline-success ms-2">View Users</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!service" class="container mt-4">
+  <div class="alert alert-warning">Service not found.</div>
+</div>

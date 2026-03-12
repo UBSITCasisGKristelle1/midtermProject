@@ -1,31 +1,46 @@
 <div class="container mt-4">
-  <h2 class="mb-4">Users</h2>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Users</h2>
+    <button class="btn btn-success" (click)="openAddUserModal()">Add New User</button>
+  </div>
+
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Search users..." [(ngModel)]="searchText" />
+  </div>
 
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Email</th>
         <th>Role</th>
-        <th>Action</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
         <td>{{ user.id }}</td>
-        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.role }}</td>
         <td>
+          <span class="badge" [ngClass]="{'bg-primary': user.role === 'Admin', 'bg-secondary': user.role === 'User', 'bg-success': user.role === 'Manager', 'bg-warning': user.role === 'Editor'}">
+            {{ user.role }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-info btn-sm" (click)="viewUserDetailsPage(user)">View Details</button>
           <button class="btn btn-primary btn-sm" (click)="viewUserDetails(user)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- modal -->
+<!-- Edit Modal -->
 <div class="modal" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'" tabindex="-1" *ngIf="showModal" (click)="closeModal()">
   <div class="modal-dialog modal-lg" (click)="$event.stopPropagation()">
     <div class="modal-content">
@@ -41,7 +56,7 @@
               <strong>ID:</strong> {{ selectedUser.id }}
             </div>
             <div class="col-md-6 mb-2">
-              <strong>Name:</strong> {{ selectedUser.firstName }} {{ selectedUser.lastName }}
+              <strong>Full Name:</strong> {{ selectedUser.firstName }} {{ selectedUser.lastName }}
             </div>
             <div class="col-md-6 mb-2">
               <strong>Email:</strong> {{ selectedUser.email }}
@@ -51,7 +66,7 @@
             </div>
           </div>
           <hr>
-          <h6 class="text-muted mb-3">Edit User</h6>
+          <h6 class="text-muted mb-3">Edit User Information</h6>
         </div>
         <app-user-form [user]="selectedUser" (userChange)="onUserUpdate($event)"></app-user-form>
       </div>
@@ -63,4 +78,46 @@
   </div>
 </div>
 
-<div class="modal-backdrop show" *ngIf="showModal" (click)="closeModal()"></div>
+<!-- Add User Modal -->
+<div class="modal" [class.show]="showAddModal" [style.display]="showAddModal ? 'block' : 'none'" tabindex="-1" *ngIf="showAddModal" (click)="closeAddModal()">
+  <div class="modal-dialog modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New User</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeAddModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="newUser.firstName" name="firstName">
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="newUser.lastName" name="lastName">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="newUser.email" name="email">
+          </div>
+          <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-control" id="role" [(ngModel)]="newUser.role" name="role">
+              <option value="">Select a role</option>
+              <option value="Admin">Admin</option>
+              <option value="Manager">Manager</option>
+              <option value="Editor">Editor</option>
+              <option value="User">User</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeAddModal()">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="addNewUser()">Add User</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop show" *ngIf="showModal || showAddModal" (click)="closeModal(); closeAddModal()"></div>

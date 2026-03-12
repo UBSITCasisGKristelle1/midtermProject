@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 import { Product } from '../app/models/product.interface';
 import { ProductFormComponent } from '../app/product-form/product-form.component';
 
 @Component({
   selector: 'app-products',
-  imports: [FormsModule, CommonModule, ProductFormComponent],
+  imports: [FormsModule, CommonModule, ProductFormComponent, RouterModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
@@ -108,7 +109,13 @@ description: 'HD webcam for video meetings.'
 selectedProduct!: Product;
 showModal: boolean = false;
 
+constructor(private router: Router) {}
+
 viewProductDetails(product: Product) {
+this.router.navigate(['/products', product.id]);
+}
+
+viewProductDetailsModal(product: Product) {
 this.selectedProduct = product;
 this.showModal = true;
 }
