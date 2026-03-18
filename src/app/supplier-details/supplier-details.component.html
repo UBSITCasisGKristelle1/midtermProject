@@ -1,0 +1,27 @@
+<div *ngIf="supplier">
+  <h2>Supplier Details</h2>
+
+  <label>ID:</label>
+  <input [(ngModel)]="supplier.id" readonly><br>
+
+  <label>Name:</label>
+  <input [(ngModel)]="supplier.supplierName"><br>
+
+  <label>Location:</label>
+  <input [(ngModel)]="supplier.location"><br>
+
+  <label>Email:</label>
+  <input [(ngModel)]="supplier.email"><br>
+
+  <label>Contact Person:</label>
+  <input [(ngModel)]="supplier.contactPerson"><br>
+
+  <label>Phone:</label>
+  <input [(ngModel)]="supplier.phone"><br>
+
+  <label>Products:</label>
+  <textarea [(ngModel)]="supplier.productsSupplied"></textarea><br>
+
+  <button (click)="saveChanges()">Save</button>
+  <button (click)="goBack()">Back</button>
+</div>

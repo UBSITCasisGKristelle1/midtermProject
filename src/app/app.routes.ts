@@ -16,4 +16,7 @@ export const routes: Routes = [
     { path: 'services', component: ServicesComponent },
     { path: 'services/:id', component: ServiceDetailsComponent },
     { path: 'analytics', component: AnalyticsComponent },
+    { path: '', redirectTo: '/suppliers', pathMatch: 'full' },
+    { path: 'suppliers', component: SuppliersListComponent },
+     { path: 'suppliers/:id', component: SupplierDetailsComponent }
 ];
